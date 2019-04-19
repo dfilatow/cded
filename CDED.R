@@ -25,21 +25,14 @@ plot (r3)
 
 #####################script works up to here################################
 #########work on making this into a for loop that works off the naming convention in the CDED FTP
-for (i in urllist) {
-  temp<- tempfile()
-  temp2 <- tempfile()
-  download.file(i, temp)
-  unzip(zipfile = temp, exdir = temp2)
-  dem <- ########## minus the .zip and only grab the file name from the url i
-  r <- raster(file.path(temp2, dem))
-  ########add up the rasters into a raster list that will be merged
-  unlink(c(temp, temp2))
-}
+#for (i in urllist) {
+#  temp<- tempfile()
+#  temp2 <- tempfile()
+#  download.file(i, temp)
+#  unzip(zipfile = temp, exdir = temp2)
+#  dem <- ########## minus the .zip and only grab the file name from the url i
+#  r <- raster(file.path(temp2, dem))
+#  ########add up the rasters into a raster list that will be merged
+#  unlink(c(temp, temp2))
+#}
   
-
-
-
-
-
-
-r3 <- r1+r2
