@@ -1,5 +1,5 @@
 #########################################################################
-#CDED function
+#CDED functions
 #input a list of URL addresses for the cded mapsheets you want to download
 #unzip and merge.https://pub.data.gov.bc.ca/datasets/175624
 
@@ -19,12 +19,14 @@ maplist <- c(url1, url2)
 #########################################################################
 #define functions
 #########################################################################
-#CDED function
+
+#########################################################################
+#cded_get function
 #input a list of URL addresses for the cded mapsheets you want to download
 #unzip and merge.https://pub.data.gov.bc.ca/datasets/175624
 #########################################################################
 
-cded <- function (maplist){
+cded_get <- function (maplist){
   require(raster)
   require(dplyr)
   require(rgdal)
@@ -59,5 +61,5 @@ cded <- function (maplist){
 
 
 #run function with test data
-cdem93j09 <-cded(maplist)
+cdem93j09 <-cded_get(maplist)
 plot(cdem93j09)
