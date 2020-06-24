@@ -19,7 +19,7 @@ cded_get <- function (crs1 = 3005, aoi){
   require(raster)
   require(dplyr)
   require(rgdal)
-  require (databc)
+  require (bcdata)
   
   #url for cded data by east and west map tiles 
   cdedurl<- "https://pub.data.gov.bc.ca/datasets/175624/"
