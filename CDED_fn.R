@@ -72,4 +72,4 @@ aoi <- bcdc_query_geodata("51f20b1a-ab75-42de-809d-bf415a0f9c62", crs = 3005) %>
 
 #run function with test aoi
 pars_dem <-cded_get(crs = 3005, aoi = aoi)
-plot(cdem93j09)
+plot(pars_dem)
