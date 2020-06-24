@@ -28,7 +28,7 @@ cded_get <- function (crs1 = 3005, aoi){
     collect()
   
   #add a field and populat with the map block
-  grid50k$block<-substring(grid50k$MAP_TILE, first = 1, last = 4)
+  grid50k$block<-substring(grid50k$MAP_TILE, first = 2, last = 4)
   
   grid50k$url1<-paste0(cdedurl, grid50k$block,"/", grid50k$MAP_TILE, "_e.dem.zip")
   grid50k$url2<-paste0(cdedurl, grid50k$block,"/", grid50k$MAP_TILE, "_w.dem.zip")
