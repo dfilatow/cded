@@ -11,7 +11,7 @@
 #define cded_get function
 # input an are of interest, aoi to create a list of cded dem url links 
 #unzip and merge files from https://pub.data.gov.bc.ca/datasets/175624
-# return a stitched together dem in the crs provided, crs1
+# return a stitched together RasterLayer object of the dem in the crs provided, crs1
 #########################################################################
 
 cded_get <- function (crs1 = 3005, aoi){
