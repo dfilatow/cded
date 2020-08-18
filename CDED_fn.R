@@ -44,22 +44,23 @@ cded_get <- function (aoi){
   temp2 <- tempfile()
   x<-1
   for (i in maplist) {
- 
+    
     download.file(i, temp)
     unzip(zipfile = temp, exdir = temp2)
     cat("\nUnzipping ", i, ".")
-    filename <- sub('\\.zip$', '', (sapply (strsplit (i, '/'), tail, 1)))
+    filename <- sub('\\.zip$','',(sapply(strsplit(i, '/'), tail, 1)))
+    filename <- tolower(filename)
+    
     if (x==1){
       r <- raster(file.path(temp2, filename))
       cat("Loaded ", filename, ".")
-    }
-    else {
+    }else{
       r<-merge(r, (raster(file.path(temp2, filename))))
-    cat("\nLoaded and merged ", filename, ".\n")  
+      cat("\nLoaded and merged ", filename, ".\n")  
     }
     
     x<-x+1
-    }
+  }
   unlink(c(temp, temp2))
   
   # crop and mask the merged dem to the aoi polygon. 
@@ -72,12 +73,14 @@ cded_get <- function (aoi){
   
   print(Sys.time()- start.time)
   return (r)
-  }
+}
 ##########################################################################
 
 ##########################################################################
 #test function
 ##########################################################################
+
+library(tidyverse)
 
 #small community watershed test that spans mapsheet tiles
 gam <- bcdata::bcdc_query_geodata("bc57faf7-23e4-43fe-918a-e999936dbafa", crs = 3005) %>% 
