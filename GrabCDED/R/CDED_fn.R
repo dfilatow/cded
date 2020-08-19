@@ -85,7 +85,7 @@ cded_get <- function (aoi){
   r <- raster::projectRaster(r, crs = aoi_crs)
   cat("\nCroping raster to aoi extent.\n")
 
-  aoi_bbox<-sf::st_bbox(e_sf)
+  aoi_bbox<-sf::st_bbox(aoi)
 
   aoi_ext<-raster::extent(aoi_bbox[1],aoi_bbox[3],aoi_bbox[2],aoi_bbox[4])
 
