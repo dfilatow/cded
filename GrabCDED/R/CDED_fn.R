@@ -33,12 +33,12 @@ cded_get <- function (aoi){
   cdedurl <- "https://pub.data.gov.bc.ca/datasets/175624/"
 
   nad83<-'+proj=longlat +ellps=GRS80 +datum=NAD83 +no_defs'
-  aoi_crs<-sf::st_crs(aoi)
+  aoi_crs<-sf::st_crs(aoi)$proj4string
 
-  if(aoi_crs!=nad83)
-  {
-    aoi<-sf::sf_project(from=aoi,to=nad83)
-  }
+  # if(aoi_crs$proj4string!=nad83)
+  # {
+  #   aoi<-sf::st_transform(aoi,nad83)
+  # }
 
 
   cat("Retreiving mapsheet polygons from bcdc.")
@@ -84,7 +84,12 @@ cded_get <- function (aoi){
   cat("\nReprojecting raster. ")
   r <- raster::projectRaster(r, crs = aoi_crs)
   cat("\nCroping raster to aoi extent.\n")
-  r <- raster::crop(r, aoi)
+
+  aoi_bbox<-sf::st_bbox(e_sf)
+
+  aoi_ext<-raster::extent(aoi_bbox[1],aoi_bbox[3],aoi_bbox[2],aoi_bbox[4])
+
+  r <- raster::crop(r,aoi_ext)
 
   print(Sys.time()-start.time)
   return (r)
