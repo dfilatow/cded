@@ -32,6 +32,15 @@ cded_get <- function (aoi){
   #url for cded data by east and west map tiles
   cdedurl <- "https://pub.data.gov.bc.ca/datasets/175624/"
 
+  nad83<-'+proj=longlat +ellps=GRS80 +datum=NAD83 +no_defs'
+  aoi_crs<-sf::st_crs(aoi)
+
+  if(aoi_crs!=nad83)
+  {
+    aoi<-sf::sf_project(from=aoi,to=nad83)
+  }
+
+
   cat("Retreiving mapsheet polygons from bcdc.")
   grid50k <- bcdata::bcdc_query_geodata("https://catalogue.data.gov.bc.ca/dataset/f9483429-fedd-4704-89b9-49fd098d4bdb")%>%
     dplyr::filter(bcdata::INTERSECTS(aoi)) %>%
@@ -73,7 +82,7 @@ cded_get <- function (aoi){
   #NOTE I believe cropping and masking is faster when your dem is large and your mask small.
   #WARNING the reprojecti0n may fail for large study areas due to memoey limitations
   cat("\nReprojecting raster. ")
-  r <- raster::projectRaster(r, crs = crs(aoi))
+  r <- raster::projectRaster(r, crs = aoi_crs)
   cat("\nCroping raster to aoi extent.\n")
   r <- raster::crop(r, aoi)
 
