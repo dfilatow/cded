@@ -1,13 +1,13 @@
-Package: GrabCDED
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Package: cded
+Title: Download Canadian Digital Elevation Data (CDED)
+Version: 1.0.0
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Deepa",
+           family = "Filatow",
            role = c("aut", "cre"),
            email = "first.last@example.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Description: Download Canadian Digital Elevation Data (CDED) intersecting the user provided area of interest.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to
     pick a license
 Encoding: UTF-8
